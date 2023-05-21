@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { FormularioCadastro } from "./components/FormularioCadastro/FormularioCadastro";
+import Header from "./components/Header/Index";
+import TelaDePostagem from "./components/TabelaDePostagem/TelaDePostagem";
+import {Container,GlobalStyle} from "./GlobalStyle"
 
 function App() {
+  const [imagem, setImagem] = useState('')
+  const [posts,setPosts] = useState({
+    imagem:"",
+    descricao:""
+  })
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Container>
+      <GlobalStyle/>
+      <aside>
+        <Header/>
+        <FormularioCadastro setPost={setPosts}/>
+      </aside>
+      <TelaDePostagem {...posts}/>
+    </Container>
   );
 }
 
